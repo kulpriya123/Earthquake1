@@ -1,0 +1,25 @@
+
+services:
+  db:
+    image: postgres:16
+    container_name: earthquake-postgres
+    restart: unless-stopped
+
+    env_file:
+      - .env
+
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - earthquake_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  earthquake_postgres_data:
+    external: true
+    name: eee6892c66104929685dfa29bbb15d5c16517c62ec98f1f4c2fd1a96283b6615
